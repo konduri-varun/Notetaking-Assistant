@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Meeting Notes & Transcription</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 AI Meeting Notes</h1>
+            <p class="subtitle">Record, Transcribe & Summarize your meetings with AI</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('schedule')">📅 Schedule Meeting</button>
+            <button class="tab-btn" onclick="showTab('calendar')">📆 My Calendar Events</button>
+            <button class="tab-btn" onclick="showTab('check')">🔍 Check Transcript</button>
+            <button class="tab-btn" onclick="showTab('recordings')">🎬 All Recordings</button>
+        </div>
+
+        <!-- Schedule Meeting Tab -->
+        <div id="schedule-tab" class="tab-content active">
+            <div class="card">
+                <h2>📅 Schedule Meeting with AI Bot</h2>
+                <p class="info">Create a future meeting - bot joins automatically</p>
+                
+                <form id="schedule-form">
+                    <div class="form-group">
+                        <label for="meeting-title">Meeting Title:</label>
+                        <input type="text" id="meeting-title" placeholder="Team Standup Meeting" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="meeting-link">Meeting Link:</label>
+                        <input type="url" id="meeting-link" placeholder="https://meet.google.com/abc-defg-hij" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="start-time">Start Date & Time (IST):</label>
+                        <input type="text" id="start-time" placeholder="2025-10-07 10:30 AM" required>
+                        <small>Format: YYYY-MM-DD HH:MM AM/PM</small>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Schedule Meeting</button>
+                </form>
+
+                <div id="schedule-result" class="result"></div>
+            </div>
+        </div>
+
+        <!-- My Calendar Events Tab -->
+        <div id="calendar-tab" class="tab-content">
+            <div class="card">
+                <h2>📆 My Calendar Events</h2>
+                <p class="info">View your calendar events and auto-deploy bot to meetings</p>
+                
+                <form id="calendar-form">
+                    <div class="form-group">
+                        <label for="event-date">Select Date (IST):</label>
+                        <input type="date" id="event-date" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Fetch Events</button>
+                </form>
+
+                <div id="calendar-result" class="result"></div>
+                <div id="calendar-events-container"></div>
+            </div>
+        </div>
+
+        <!-- Check Transcript Tab -->
+        <div id="check-tab" class="tab-content">
+            <div class="card">
+                <h2>🔍 Check Transcript Status</h2>
+                <p class="info">View transcript after meeting ends</p>
+                
+                <form id="check-form">
+                    <div class="form-group">
+                        <label for="notetaker-id">Notetaker ID:</label>
+                        <input type="text" id="notetaker-id" placeholder="Enter notetaker_id from previous response" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Check Status</button>
+                </form>
+
+                <div id="check-result" class="result"></div>
+            </div>
+        </div>
+
+        <!-- All Recordings Tab -->
+        <div id="recordings-tab" class="tab-content">
+            <div class="card">
+                <div class="recordings-header">
+                    <div>
+                        <h2>🎬 All Recordings</h2>
+                        <p class="info">View all your meeting transcripts</p>
+                    </div>
+                    <button onclick="loadAllRecordings()" class="btn btn-secondary">🔄 Refresh</button>
+                </div>
+
+                <div id="recordings-container" class="recordings-grid">
+                    <div class="loading">Loading recordings...</div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Powered by Nylas Notetaker API</p>
+        </footer>
+    </div>
+
+    <!-- Transcript Modal -->
+    <div id="transcript-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">📄 Transcript Details</h2>
+                <span class="modal-close" onclick="closeTranscriptModal()">&times;</span>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
